@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 
 const Login = () => {
+    
+    const [show, setShow] =useState(false);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
+
+
+
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,16 +23,21 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
+        setError('');
+        setSuccess('');
     
         signIn(email, password)
           .then(result => {
             const loggedInUser = result.user;
             console.log(loggedInUser);
             navigate(from, {replace:true})
+            setSuccess('Successfully login');
     
           })
           .catch(error => {
             console.log(error);
+            setError(error.message);
           })
       }
     return (
@@ -46,9 +59,9 @@ const Login = () => {
           Login
         </Button>
 
-        <Form.Text className='text-danger'>
+        <Form.Text className='text-danger d-block'>{error}
         </Form.Text>
-        <Form.Text className='text-success'>
+        <Form.Text className='text-success d-block'>{success}
 
         </Form.Text>
 
