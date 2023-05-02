@@ -7,64 +7,55 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
 
-    const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-    return (
+  return (
+    <Container>
+
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
-        
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container>
-      <Navbar.Brand href="#home">Chef Hunter</Navbar.Brand>
-      
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mx-auto">
-            <Nav.Link href="">
-              <Link to='/'>Home</Link>
-            </Nav.Link>
-            <Nav.Link href="">
-              <Link to='/'>Blog</Link>
-            </Nav.Link>
-            <Nav.Link href="">
-              <Link to='/'>Home</Link>
-            </Nav.Link>
-            <Nav.Link href="">
-              <Link to='/'>Home</Link>
-            </Nav.Link>   
-            <Nav.Link href="">
-              <Link to='/'>Home</Link>
-            </Nav.Link>
-          </Nav>
-          <Nav>
-            {user && <Nav.Link href="#deets"><FaUserCircle></FaUserCircle></Nav.Link>}
+          <Navbar.Brand href="#home">Chef Hunter</Navbar.Brand>
 
-            <Nav.Link eventKey={2} href="#memes">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mx-auto">
+              <Nav.Link href="">
+                <Link className='text-decoration-none text-secondary' to='/'>Home</Link>
+              </Nav.Link>
+              <Nav.Link href="">
+                <Link className='text-decoration-none text-secondary' to='/'>Blog</Link>
+              </Nav.Link>
+            </Nav>
+            <Nav>
+              {user && <Nav.Link href="#deets"><img src={URL} alt="" /></Nav.Link>}
 
-              {
-                user?
-                <Button variant="secondary">LogOut</Button>: 
-                <Link to="/login">
-                  <Button variant="secondary">Loin</Button>
-                </Link>
-              }
+              <Nav.Link eventKey={2} href="#memes" >
 
-{
-                user?
-                <></>: 
-                <Link to="/register">
-                  <Button variant="secondary">Register</Button>
-                </Link>
-              }
+                {
+                  user ?
+                    <Button  variant="danger">LogOut</Button> :
+                    <Link to="/login">
+                      <Button className='me-3' variant="primary">Loin</Button>
+                    </Link>
+                }
 
-            
+                {
+                  user ?
+                    <></> :
+                    <Link to="/register">
+                      <Button variant="success">Register</Button>
+                    </Link>
+                }
 
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+
+
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
-    );
+      </Navbar>
+    </Container>
+  );
 };
 
 export default Header;

@@ -3,6 +3,8 @@ import Main from "../LayOut/Main";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Chef from "../Pages/Chef/Chef";
+import Recipes from "../Pages/Recipes/Recipes";
 
 const router = createBrowserRouter([
     {
@@ -17,8 +19,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/chef/:id',
-                element: <Home></Home>,
-                loader: ({params})=>fetch(`http://localhost:5000/chef/${params.id}`)
+                element: <Chef></Chef>,
+                loader: ({params})=>fetch(`http://localhost:5000/chef/${params._id}`)
  
              },
              {
@@ -28,7 +30,12 @@ const router = createBrowserRouter([
              {
                 path: '/register',
                 element:<Register></Register>
+             },
+             {
+                path: '/recipes',
+                element:<Recipes></Recipes>
              }
+
         ]
     }
 ])
