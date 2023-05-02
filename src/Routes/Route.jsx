@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../LayOut/Main";
 import Home from "../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
                 element: <Home></Home>,
                 loader: ({params})=>fetch(`http://localhost:5000/chef/${params.id}`)
  
+             },
+             {
+                path: '/login',
+                element:<Login></Login>
+             },
+             {
+                path: '/login',
+                element:<Register></Register>
              }
         ]
     }
