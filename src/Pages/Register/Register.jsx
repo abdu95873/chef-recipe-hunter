@@ -7,9 +7,11 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const {createUser,userUpdate} = useContext(AuthContext);
 
-    const handleRegister = event =>{
+    const { createUser, userUpdate } = useContext(AuthContext);
+    const [accepted, setAccepted] = useState(false);
+
+    const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -18,7 +20,7 @@ const Register = () => {
         const password = form.password.value;
         const confirm = form.confirm.value;
 
-        console.log(name,email,password);
+        console.log(name, email, password);
 
         setError('');
         setSuccess('');
@@ -26,7 +28,7 @@ const Register = () => {
         if (password !== confirm) {
             setError('Your password not match')
             return
-            
+
         }
         else if (password.length < 6) {
             setError('password must be 6 characters or longer')
@@ -34,31 +36,36 @@ const Register = () => {
         }
 
 
-        createUser(email, password )
-        .then(result =>{
-            const createdUser = result.user;
-            console.log(createdUser);
-            setSuccess('Successfully login');
-        })
-        .catch(error =>{
-            console.log(error);
-            setError(error.message);
-        })
+        createUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+                setSuccess('Successfully login');
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message);
+            })
 
         userUpdate(name, photo)
-        .then(result => {
-            const loggedInUser = result.user;
-            console.log(loggedInUser);
-          })
-          .catch(error => {
-            console.log(error);
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
             })
+            .catch(error => {
+                console.log(error);
+            })
+
+        
 
         setSuccess('Successfully login');
         form.reset();
-        
 
-        }
+
+    }
+    const handleAccepted = event => {
+        setAccepted(event.target.checked)
+    }
 
 
     return (
@@ -91,9 +98,12 @@ const Register = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" name='accept' label="Accept Terms and Condition" />
+                    <Form.Check onClick={handleAccepted} 
+                    type="checkbox" 
+                    name='accept' 
+                    label={<>Accept <Link to="/terms">Terms and Conditions</Link> </>} />
                 </Form.Group>
-                <Button variant="primary" type="submit" className='d-block mx-auto'>
+                <Button variant="primary" disabled={!accepted} type="submit">
                     Register
                 </Button>
 
@@ -102,8 +112,8 @@ const Register = () => {
 
                 <Form.Text className='text-center mx-auto'>Already have an account? <Link to="/login" className='text-danger'>Login</Link></Form.Text>
 
-                
-                
+
+
             </Form>
         </Container>
     );

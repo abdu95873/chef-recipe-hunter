@@ -121,8 +121,8 @@ const Login = () => {
 
       <h5>Login with ....</h5>
       
-      <button className='me-3' onClick={handleGoogleLogin}>google</button>
-      <button onClick={handleGitLogin}>git</button>
+      <button className='me-3 btn btn-outline-secondary' onClick={handleGoogleLogin}>google</button>
+      <button className='me-3 btn btn-outline-secondary' onClick={handleGitLogin}>git</button>
     
     </Container>
     );

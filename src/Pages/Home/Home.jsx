@@ -21,6 +21,7 @@ const Home = () => {
             <Banner></Banner>
 
             <Row>
+                <h1 className='text-center my-5'>Chef List </h1>
             {
                 chef.map(chef => <ChefCard
                     key={chef._id}
