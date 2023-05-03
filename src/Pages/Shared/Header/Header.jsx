@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { signOut } from 'firebase/auth';
+
 
 
 const Header = () => {
@@ -23,7 +24,7 @@ const Header = () => {
 
 
   return (
-    <Container>
+    <Container className='my-5 '>
 
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
@@ -36,11 +37,23 @@ const Header = () => {
                 <Link className='text-decoration-none text-secondary' to='/'>Home</Link>
               </Nav.Link>
               <Nav.Link href="">
-                <Link className='text-decoration-none text-secondary' to='/'>Blog</Link>
+                <Link className='text-decoration-none text-secondary' to='/blog'>Blog</Link>
               </Nav.Link>
             </Nav>
             <Nav>
-              {user && <Nav.Link href="#deets"><img src={URL} alt="" /></Nav.Link>}
+
+              
+              {user && 
+              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{user.displayName}</Tooltip>}>
+              <span className="d-inline-block">
+
+                
+
+                  <img className='mt-2' disabled style={{ fontSize: '2rem', pointerEvents: 'none', height:'40px', borderRadius:'50px', width:'40px' }} src={user.photoURL} alt="" />
+
+                
+              </span>
+            </OverlayTrigger>}
 
               <Nav.Link eventKey={2} href="#memes" >
 

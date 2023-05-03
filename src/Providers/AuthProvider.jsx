@@ -16,9 +16,12 @@ const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const createUser= (email, password) =>{
+    const createUser= async (email, password, name, photo) =>{
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        const res2 =await updateProfile( res.user, {displayName:name, photoURL:photo})
+        console.log(res,res2);
+        return res;
     }
 
     const userUpdate = (name, photo)=>{
@@ -75,7 +78,8 @@ const AuthProvider = ({children}) => {
         logOut,
         googleLogin,
         gitLogin,
-        userUpdate
+        userUpdate,
+
         
     };
 

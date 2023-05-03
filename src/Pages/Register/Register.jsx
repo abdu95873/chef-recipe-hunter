@@ -36,7 +36,7 @@ const Register = () => {
         }
 
 
-        createUser(email, password)
+        createUser(email, password, name, photo)
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
@@ -47,14 +47,14 @@ const Register = () => {
                 setError(error.message);
             })
 
-        userUpdate(name, photo)
-            .then(result => {
-                const loggedInUser = result.user;
-                console.log(loggedInUser);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        // userUpdate(name, photo)
+        //     .then(result => {
+        //         const loggedInUser = result.user;
+        //         console.log(loggedInUser);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
 
         
 

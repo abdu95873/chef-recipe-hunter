@@ -7,6 +7,7 @@ import Chef from "../Pages/Chef/Chef";
 
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "../Pages/Shared/NotFound/NotFound";
+import Blog from "../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
    {
@@ -16,13 +17,13 @@ const router = createBrowserRouter([
          {
             path: '/',
             element: <Home></Home>,
-            loader: () => fetch(`http://localhost:5000/chef`)
+            loader: () => fetch(`https://chef-hunter-server-abdu95873.vercel.app/chef`)
 
          },
          {
             path: '/chef/:id',
             element: <PrivateRoute><Chef></Chef></PrivateRoute>,
-            loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
+            loader: ({ params }) => fetch(`https://chef-hunter-server-abdu95873.vercel.app/chef/${params.id}`)
 
          },
          {
@@ -32,11 +33,16 @@ const router = createBrowserRouter([
          {
             path: '/register',
             element: <Register></Register>
-         }
+         },
+         {
+            path: '/blog',
+            element: <Blog></Blog>
+         },
 
 
       ]
    },
+   
    {
       path: '/*',
       element: <NotFound></NotFound>
