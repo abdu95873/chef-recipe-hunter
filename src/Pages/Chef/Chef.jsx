@@ -1,12 +1,44 @@
 import { key } from 'localforage';
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { Button, Card, Container } from 'react-bootstrap';
 import photo from '../..//assets/background.jpg';
+import { Rating } from '@smastrom/react-rating';
+import '@smastrom/react-rating/style.css';
+import { toast } from 'react-toastify';
+
+
+
+
 
 const Chef = () => {
     // const { _id } = useParams();
     const { recipe, img, name, description, like, no_of_recipe, experience, recipe1, recipe2, recipe3 } = useLoaderData();
+
+   const [isDisabledOne, SetIsDisabledOne] = useState(false);
+   const [isDisabledTwo, SetIsDisabledTwo] = useState(false);
+   const [isDisabledThree, SetIsDisabledThree] = useState(false);
+
+    
+    
+
+      const handleClickOne = () => {
+        SetIsDisabledOne(true);
+        toast('Button clicked and disabled');
+    
+        // Do something here
+      };
+      const handleClickTwo = () => {
+        SetIsDisabledTwo(true);
+    
+        // Do something here
+      };
+      const handleClickThree = () => {
+        SetIsDisabledThree(true);
+    
+        // Do something here
+      };
+    
 
     console.log(recipe)
 
@@ -44,7 +76,11 @@ const Chef = () => {
                         <Card.Text>
                         Method: {recipe1.method}
                         </Card.Text>
-                        <Button variant="primary">Go Add favorite</Button>
+                        <Card.Text>
+                            Rating: <Rating style={{ maxWidth: 250 }} value={Math.round(recipe1?.rating || 0)} readOnly />
+                        
+                        </Card.Text>
+                        <Button onClick={handleClickOne} disabled={isDisabledOne} variant="primary">Go Add favorite</Button>
                     </Card.Body>
                 </Card>
                 <Card className='my-5'>
@@ -58,7 +94,11 @@ const Chef = () => {
                         <Card.Text>
                         Method: {recipe2.method}
                         </Card.Text>
-                        <Button variant="primary">Go Add favorite</Button>
+                        <Card.Text>
+                            Rating: <Rating style={{ maxWidth: 250 }} value={Math.round(recipe2?.rating || 0)} readOnly />
+                        
+                        </Card.Text>
+                        <Button onClick={handleClickTwo} disabled={isDisabledTwo} variant="primary">Go Add favorite</Button>
                     </Card.Body>
                 </Card>
                 <Card className='my-5'>
@@ -72,7 +112,12 @@ const Chef = () => {
                         <Card.Text>
                         Method: {recipe3.method}
                         </Card.Text>
-                        <Button variant="primary">Go Add favorite</Button>
+                        <Card.Text>
+                            Rating: <Rating style={{ maxWidth: 250 }} value={Math.round(recipe3?.rating || 0)} readOnly />
+                        
+                        </Card.Text>
+
+                        <Button onClick={handleClickThree} disabled={isDisabledThree} variant="primary">Go Add favorite</Button>
                     </Card.Body>
                 </Card>
             </div>
