@@ -3,11 +3,24 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
+import { signOut } from 'firebase/auth';
 
 
 const Header = () => {
 
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = ()=>{
+    logOut()
+    .then(result => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
 
   return (
     <Container>
@@ -33,7 +46,7 @@ const Header = () => {
 
                 {
                   user ?
-                    <Button  variant="danger">LogOut</Button> :
+                    <Button onClick={handleLogOut}  variant="danger">LogOut</Button> :
                     <Link to="/login">
                       <Button className='me-3' variant="primary">Loin</Button>
                     </Link>

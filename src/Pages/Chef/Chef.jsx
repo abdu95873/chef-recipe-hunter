@@ -5,16 +5,15 @@ import Recipes from '../Recipes/Recipes';
 import { Container } from 'react-bootstrap';
 
 const Chef = () => {
-    const { _id } = useParams();
-    const recipes = useLoaderData();
+    // const { _id } = useParams();
+    const recipe = useLoaderData();
 
-    console.log(_id);
+    console.log(recipe)
 
     return (
         <Container>
             <img src="" alt="" />
-
-            <p>name</p>
+            <p>name: {recipe?.name}</p>
             <p>description</p>
             <button>add fevarite</button>
         </Container>

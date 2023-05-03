@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth";
 import app from '../Firebase/firebase.config';
-import { GithubAuthProvider, GoogleAuthProvider} from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, updateProfile} from 'firebase/auth';
 
 
 
@@ -19,6 +19,18 @@ const AuthProvider = ({children}) => {
     const createUser= (email, password) =>{
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    const userUpdate = (name, photo)=>{
+        updateProfile(auth.currentUser,{
+            displayName: name,
+            photoURL: photo
+        })
+        .then(()=>{
+            alert('User Updated');
+        }).catch(error=>{
+            console.log(error);
+        })
     }
 
     const signIn = (email, password) =>{
@@ -39,6 +51,8 @@ const AuthProvider = ({children}) => {
     const logOut = () =>{
         return signOut(auth);
     }
+
+    
     useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser);
@@ -49,6 +63,9 @@ const AuthProvider = ({children}) => {
         }
     },[])
 
+
+
+
     
     const authInfo ={
         user,
@@ -57,8 +74,8 @@ const AuthProvider = ({children}) => {
         signIn,
         logOut,
         googleLogin,
-        gitLogin
-        
+        gitLogin,
+        userUpdate
         
     };
 

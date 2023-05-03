@@ -7,7 +7,7 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const {createUser} = useContext(AuthContext);
+    const {createUser,userUpdate} = useContext(AuthContext);
 
     const handleRegister = event =>{
         event.preventDefault();
@@ -34,16 +34,25 @@ const Register = () => {
         }
 
 
-        createUser(email, password)
+        createUser(email, password )
         .then(result =>{
             const createdUser = result.user;
-            console.log(createdUser); 
+            console.log(createdUser);
             setSuccess('Successfully login');
         })
         .catch(error =>{
             console.log(error);
             setError(error.message);
         })
+
+        userUpdate(name, photo)
+        .then(result => {
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+          })
+          .catch(error => {
+            console.log(error);
+            })
 
         setSuccess('Successfully login');
         form.reset();
