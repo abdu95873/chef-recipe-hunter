@@ -3,6 +3,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
+
 const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');

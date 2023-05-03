@@ -4,7 +4,10 @@ import { Alert, Container } from 'react-bootstrap';
 
 
 
+
 const Blog = () => {
+
+    
     return (
         <Container>
             <Alert variant="success">

@@ -5,13 +5,16 @@ import { Button, Card, Container } from 'react-bootstrap';
 import photo from '../..//assets/background.jpg';
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 
 
 const Chef = () => {
+
+    const notify = () => toast("Added to favorite ");
     // const { _id } = useParams();
     const { recipe, img, name, description, like, no_of_recipe, experience, recipe1, recipe2, recipe3 } = useLoaderData();
 
@@ -25,16 +28,23 @@ const Chef = () => {
       const handleClickOne = () => {
         SetIsDisabledOne(true);
         toast('Button clicked and disabled');
+        notify();
     
         // Do something here
       };
+
+
       const handleClickTwo = () => {
         SetIsDisabledTwo(true);
+        toast('Button clicked and disabled ');
+        notify();
     
         // Do something here
       };
       const handleClickThree = () => {
         SetIsDisabledThree(true);
+        toast('Button clicked and disabled ');
+        notify();
     
         // Do something here
       };
@@ -80,7 +90,10 @@ const Chef = () => {
                             Rating: <Rating style={{ maxWidth: 250 }} value={Math.round(recipe1?.rating || 0)} readOnly />
                         
                         </Card.Text>
+                        <div>
                         <Button onClick={handleClickOne} disabled={isDisabledOne} variant="primary">Go Add favorite</Button>
+                        <ToastContainer />
+                        </div>
                     </Card.Body>
                 </Card>
                 <Card className='my-5'>
