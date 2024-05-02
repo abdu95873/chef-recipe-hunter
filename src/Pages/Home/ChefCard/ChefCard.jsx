@@ -8,9 +8,9 @@ const ChefCard = ({chef}) => {
 
 
     return (
-        <Col md={4}>
-            <Container>
-                <Card style={{ width: '18rem', marginBottom: '40px' }}>
+        <Col md={4} >
+            <Container class='bg-black'>
+            <Card style={{ width: '18rem', marginBottom: '40px', marginLeft: 'auto', marginRight: 'auto', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
                     <Card.Img style={{ height: '14rem' }}  variant="top" src={img} />
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>

@@ -8,6 +8,8 @@ import { Alert, Container } from 'react-bootstrap';
 const Blog = () => {
 
     
+
+    
     return (
         <Container>
             <Alert variant="success">
@@ -51,8 +53,6 @@ const Blog = () => {
                     Custom Hooks are a feature introduced in React that allows developers to extract reusable logic from a component into a separate function. A custom hook is just a JavaScript function that starts with the use keyword and can call other hooks if necessary.
 
                     Custom Hooks are useful for encapsulating and reusing logic that can be shared between different components. For example, a custom hook can be used to manage the state of a form, handle API calls, or implement complex animations.
-
-
                 </p>
             </Alert>
 
